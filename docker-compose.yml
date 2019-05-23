@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:11.3-alpine
+    container_name: vscode_remote_postgres
+    restart: always
+    ports:
+      - 15432:5432
+    volumes:
+      - ./docker/data/postgres:/var/lib/postgres/data
+  app:
+    build:
+      context: ./docker/dev
+      dockerfile: Dockerfile
+    container_name: vscode_remote_app
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/workspace
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh
+    command: sleep infinity
+    depends_on:
+      - postgres

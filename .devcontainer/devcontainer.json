@@ -1,0 +1,12 @@
+{
+    "name": "VSCode Remote",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "extensions": [
+          "jakebecker.elixir-ls",
+    ],
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "shutdownAction": "stopCompose"
+}
